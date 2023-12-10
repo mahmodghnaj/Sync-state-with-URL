@@ -9,7 +9,7 @@ export const updateUrlWithObjectQueries = (
 
       if (value !== undefined && value !== null && value !== "") {
         urlSearchParams.set(key, value);
-      }
+      } else urlSearchParams.delete(key);
     }
   }
   const updatedUrl = `${url.split("?")[0]}?${urlSearchParams.toString()}`;
