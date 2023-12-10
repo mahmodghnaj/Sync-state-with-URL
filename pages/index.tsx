@@ -21,10 +21,18 @@ const Page = () => {
   useEffect(() => {
     if (first || second) {
       const url = updateUrlWithObjectQueries({ first, second }, router.asPath);
-      window.history.replaceState(window.history.state, "", url);
+      window.history.replaceState(
+        { ...window.history.state, as: url, url: url },
+        "",
+        url
+      );
     }
     if (!first && !second)
-      window.history.replaceState(window.history.state, "", router.pathname);
+      window.history.replaceState(
+        { ...window.history.state, as: router.pathname, url: router.pathname },
+        "",
+        router.pathname
+      );
   }, [first, second]);
 
   const currentPath = () => {
